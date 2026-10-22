@@ -31,14 +31,14 @@ content:
       - >-
         Hronaut's MCP authentication is off by default. In that mode any process running
         as your user can control the browser; turn on Require MCP authentication and use
-        the protected option before relying on valuable sign-ins.
+        the "With MCP authentication" option before relying on valuable sign-ins.
     content: |
       {
         "type": "streamable-http",
         "url": "http://127.0.0.1:47812/mcp",
         "oauth": false
       }
-  - name: Protected local HTTP connection (Global scope only)
+  - name: With MCP authentication (Global scope only)
     prerequisites:
       - >-
         Turn on Require MCP authentication in Hronaut. Hronaut keeps the owner token in a
