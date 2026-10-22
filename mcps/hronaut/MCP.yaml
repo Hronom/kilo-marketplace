@@ -29,7 +29,7 @@ content:
   - name: With MCP authentication (recommended, Global scope only)
     prerequisites:
       - >-
-        Keep Require MCP authentication on in Hronaut's Settings → MCP security. Hronaut
+        Make sure Require MCP authentication is on in Hronaut's Settings → MCP security. Hronaut
         keeps the owner token in a protected file and shows the token-aware client setup
         on Hronaut Home. Export that token as HRONAUT_MCP_TOKEN in the environment that
         launches Kilo (for example your shell profile), then restart Kilo. Alternatively,
