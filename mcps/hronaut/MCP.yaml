@@ -26,27 +26,15 @@ prerequisites:
     The Windows binary is unsigned and macOS packages are not Apple-notarized, so
     SmartScreen or Gatekeeper may warn on first launch.
 content:
-  - name: Local HTTP connection (default)
+  - name: With MCP authentication (recommended, Global scope only)
     prerequisites:
       - >-
-        Hronaut's MCP authentication is off by default. In that mode any process running
-        as your user can control the browser; turn on Require MCP authentication and use
-        the "With MCP authentication" option before relying on valuable sign-ins.
-    content: |
-      {
-        "type": "streamable-http",
-        "url": "http://127.0.0.1:47812/mcp",
-        "oauth": false
-      }
-  - name: With MCP authentication (Global scope only)
-    prerequisites:
-      - >-
-        Turn on Require MCP authentication in Hronaut. Hronaut keeps the owner token in a
-        protected file and shows the token-aware client setup on Hronaut Home. Export that
-        token as HRONAUT_MCP_TOKEN in the environment that launches Kilo (for example your
-        shell profile), then restart Kilo. Alternatively, use the global kilo.jsonc entry
-        Hronaut Home generates, which references the token file instead. Never paste the
-        token into a project file, chat or issue.
+        Keep Require MCP authentication on in Hronaut's Settings → MCP security. Hronaut
+        keeps the owner token in a protected file and shows the token-aware client setup
+        on Hronaut Home. Export that token as HRONAUT_MCP_TOKEN in the environment that
+        launches Kilo (for example your shell profile), then restart Kilo. Alternatively,
+        use the global kilo.jsonc entry Hronaut Home generates, which references the token
+        file instead. Never paste the token into a project file, chat or issue.
       - >-
         Select Global in Kilo's installation dialog. Kilo skips project MCP headers that
         contain environment or file references, so Project scope does not work with this
@@ -59,4 +47,16 @@ content:
         "headers": {
           "Authorization": "Bearer {env:HRONAUT_MCP_TOKEN}"
         }
+      }
+  - name: Without a token (MCP authentication turned off)
+    prerequisites:
+      - >-
+        Only for when Require MCP authentication is turned off in Hronaut's Settings → MCP
+        security. In that mode any process running as your user can control the browser,
+        so prefer the authenticated option before relying on valuable sign-ins.
+    content: |
+      {
+        "type": "streamable-http",
+        "url": "http://127.0.0.1:47812/mcp",
+        "oauth": false
       }
